@@ -1,5 +1,7 @@
 package parser
 
+import actions.ClientConnectAction
+import actions.ClientUserinfoChangedAction
 import actions.InitGameAction
 import actions.ShutdownGameAction
 import model.Game
@@ -15,6 +17,8 @@ class QuakeLogParser() {
     private val actions = listOf(
         InitGameAction(),
         ShutdownGameAction(),
+        ClientUserinfoChangedAction(),
+        ClientConnectAction(),
     )
 
     fun execute() {
@@ -38,12 +42,14 @@ class QuakeLogParser() {
         val matchResult = regex.find(line)
         if (matchResult != null) {
             val (time, action, message) = matchResult.destructured
-            println("time: $time, action: $action, message: $message")
+            // println("time: $time, action: $action, message: $message")
 
             actions.firstOrNull { it.match(action) }?.process(message, currentGame)?.let { game ->
                 println("result: $game")
                 currentGame = game
-                games.add(game)
+                if (!game.isRunning()) {
+                    games.add(game)
+                }
             }
         }
     }

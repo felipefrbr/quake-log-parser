@@ -1,7 +1,11 @@
 package model
 
 data class Player(
-    private val id: Int,
-    private val name: String,
-    private val kills: Int,
-)
+    val id: Int,
+    var name: String = "",
+    private val kills: Int = 0,
+) {
+    fun changeName(newName: String) {
+        name = newName
+    }
+}

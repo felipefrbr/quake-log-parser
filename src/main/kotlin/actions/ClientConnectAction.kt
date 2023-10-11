@@ -2,10 +2,10 @@ package actions
 
 import model.Game
 
-class ShutdownGameAction : GameAction {
+class ClientConnectAction : GameAction {
 
     companion object {
-        const val ACTION = "ShutdownGame"
+        private const val ACTION = "ClientConnect"
     }
 
     override fun match(action: String): Boolean {
@@ -13,7 +13,9 @@ class ShutdownGameAction : GameAction {
     }
 
     override fun process(line: String, currentGame: Game?): Game? {
-        currentGame?.shutdown()
+        println("vai adicionar um novo jogador: $line!")
+        currentGame?.newPlayer(line.toInt())
+        println(currentGame)
         return currentGame
     }
 }

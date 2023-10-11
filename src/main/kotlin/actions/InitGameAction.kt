@@ -16,6 +16,6 @@ class InitGameAction : GameAction {
     override fun process(line: String, currentGame: Game?): Game {
         val matchResult = regex.find(line)
         val hostname = matchResult?.groups?.get(1)?.value ?: "localhost"
-        return Game(hostname = hostname, isRunning = true)
+        return Game(hostname = hostname, running = true)
     }
 }
