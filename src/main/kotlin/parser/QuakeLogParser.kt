@@ -3,6 +3,7 @@ package parser
 import actions.ClientConnectAction
 import actions.ClientUserinfoChangedAction
 import actions.InitGameAction
+import actions.KillAction
 import actions.ShutdownGameAction
 import model.Game
 
@@ -12,13 +13,14 @@ class QuakeLogParser() {
 
     private var currentGame: Game? = null
 
-    private val regex = Regex("^(\\d+:\\d+) (.+): ?(.+)?")
+    private val regex = Regex("^(\\d+:\\d+) (\\S+): ?(.+)?")
 
     private val actions = listOf(
         InitGameAction(),
         ShutdownGameAction(),
         ClientUserinfoChangedAction(),
         ClientConnectAction(),
+        KillAction(),
     )
 
     fun execute() {
@@ -45,7 +47,7 @@ class QuakeLogParser() {
             // println("time: $time, action: $action, message: $message")
 
             actions.firstOrNull { it.match(action) }?.process(message, currentGame)?.let { game ->
-                println("result: $game")
+                // println("result: $game")
                 currentGame = game
                 if (!game.isRunning()) {
                     games.add(game)

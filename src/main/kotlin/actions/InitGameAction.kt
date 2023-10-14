@@ -1,6 +1,7 @@
 package actions
 
 import model.Game
+import model.World
 
 class InitGameAction : GameAction {
 
@@ -15,7 +16,8 @@ class InitGameAction : GameAction {
 
     override fun process(line: String, currentGame: Game?): Game {
         val matchResult = regex.find(line)
-        val hostname = matchResult?.groups?.get(1)?.value ?: "localhost"
-        return Game(hostname = hostname, running = true)
+        val hostname = matchResult?.groups?.get(1)?.value ?: ""
+        val world = World(id = 1022, name = "<world>")
+        return Game(hostname = hostname, world = world, running = true)
     }
 }

@@ -3,6 +3,7 @@ package model
 data class Game(
     private val hostname: String,
     private var running: Boolean,
+    private val world: World,
     private val players: MutableMap<Int, Player> = mutableMapOf(),
 ) {
 
@@ -18,5 +19,9 @@ data class Game(
 
     fun getPlayer(id: Int): Player? {
         return players[id]
+    }
+
+    fun getWorld(): World {
+        return world
     }
 }
