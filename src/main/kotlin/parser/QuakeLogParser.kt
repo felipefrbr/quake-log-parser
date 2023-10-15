@@ -1,11 +1,11 @@
 package parser
 
-import actions.ClientConnectAction
-import actions.ClientUserinfoChangedAction
-import actions.InitGameAction
-import actions.KillAction
-import actions.ShutdownGameAction
 import model.Game
+import parser.actions.ClientConnectAction
+import parser.actions.ClientUserinfoChangedAction
+import parser.actions.InitGameAction
+import parser.actions.KillAction
+import parser.actions.ShutdownGameAction
 
 class QuakeLogParser() {
 

@@ -1,4 +1,4 @@
-package actions
+package parser.actions
 
 import model.Game
 import model.Weapon
