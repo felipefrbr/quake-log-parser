@@ -12,4 +12,6 @@ data class Kill(
 
 interface Killer {
     fun kill(killed: Player, weapon: Weapon)
+
+    fun getKills(): List<Kill>
 }

@@ -23,6 +23,17 @@ fun main() {
             println("  ${player.name}: ${player.getKills().count()}")
         }
 
+        println("Kills by means:")
+        val killers = game.getPlayers() + game.getWorld()
+
+        killers
+            .flatMap { it.getKills() }
+            .groupBy { it.weapon }
+            .mapValues { it.value.count() }
+            .forEach { (weapon, kills) ->
+                println("  $weapon: $kills")
+            }
+
         println()
         println("=================================")
     }

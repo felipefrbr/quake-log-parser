@@ -13,7 +13,7 @@ data class Player(
         kills.add(Kill(this, killed, weapon))
     }
 
-    fun getKills(): List<Kill> {
+    override fun getKills(): List<Kill> {
         return kills
     }
 }
