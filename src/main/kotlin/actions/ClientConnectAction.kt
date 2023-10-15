@@ -13,9 +13,7 @@ class ClientConnectAction : GameAction {
     }
 
     override fun process(line: String, currentGame: Game?): Game? {
-        println("vai adicionar um novo jogador: $line!")
         currentGame?.newPlayer(line.toInt())
-        println(currentGame)
         return currentGame
     }
 }

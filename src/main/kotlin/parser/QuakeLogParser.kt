@@ -23,7 +23,7 @@ class QuakeLogParser() {
         KillAction(),
     )
 
-    fun execute() {
+    fun execute(): List<Game> {
         val reader = Thread.currentThread().contextClassLoader.getResourceAsStream("quake.log")?.bufferedReader()
             ?: throw Exception("File not found")
 
@@ -35,19 +35,15 @@ class QuakeLogParser() {
             }
         }
 
-        games.forEach {
-            println(it)
-        }
+        return games
     }
 
     private fun process(line: String) {
         val matchResult = regex.find(line)
         if (matchResult != null) {
             val (time, action, message) = matchResult.destructured
-            // println("time: $time, action: $action, message: $message")
 
             actions.firstOrNull { it.match(action) }?.process(message, currentGame)?.let { game ->
-                // println("result: $game")
                 currentGame = game
                 if (!game.isRunning()) {
                     games.add(game)

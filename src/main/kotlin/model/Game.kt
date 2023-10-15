@@ -21,6 +21,10 @@ data class Game(
         return players[id]
     }
 
+    fun getPlayers(): List<Player> {
+        return players.values.toList()
+    }
+
     fun getWorld(): World {
         return world
     }

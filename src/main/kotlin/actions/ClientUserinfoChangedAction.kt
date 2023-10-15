@@ -17,7 +17,6 @@ class ClientUserinfoChangedAction : GameAction {
         val matchResult = regex.find(line)
         if (matchResult != null) {
             val (id, name) = matchResult.destructured
-            println("vai mudar o nome do jogador $id para $name")
             currentGame?.getPlayer(id.toInt())?.changeName(name)
         }
         return currentGame

@@ -9,4 +9,8 @@ data class World(
     override fun kill(killed: Player, weapon: Weapon) {
         kills.add(Kill(this, killed, weapon))
     }
+
+    fun getKills(): List<Kill> {
+        return kills
+    }
 }
