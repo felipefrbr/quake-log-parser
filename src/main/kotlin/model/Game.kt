@@ -1,6 +1,7 @@
 package model
 
 data class Game(
+    val id: Long,
     private val hostname: String,
     private var running: Boolean,
     private val world: World,
